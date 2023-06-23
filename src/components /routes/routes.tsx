@@ -2,6 +2,8 @@ import { Redirect, Switch, Route } from 'react-router-dom';
 import Login from '../auth';
 import Home from '../home';
 import { Title } from '../auth/login.style';
+import { useContext } from 'react';
+import { AuthContext } from '../auth/authContext';
 
 const NotFound = () => <Title>Page Not Found</Title>;
 
@@ -61,7 +63,13 @@ const getRouteRenderWithAuth = (isLoggedIn: boolean, route: RouteDefinition) => 
 };
 
 const Routes = () => {
-  const isLoggedIn = false;
+  const user = useContext(AuthContext);
+  let isLoggedIn: boolean;
+  if (user) {
+    isLoggedIn = true;
+  } else {
+    isLoggedIn = false;
+  }
 
   return (
     <Switch>

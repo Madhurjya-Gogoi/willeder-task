@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { Redirect } from 'react-router-dom';
 import {
   Form,
   FormGroup,
@@ -9,8 +11,9 @@ import {
   LoginButton,
   ContentLink,
 } from './login.style';
-import { InputField } from '../ uielements /inputField';
 import { screenSizes } from '../helper/style.helper';
+import { InputField } from '../ uielements ';
+import { auth } from '../firebase';
 
 export const loginSteps = {
   signUpForm: 'sign-up-form',
@@ -19,22 +22,56 @@ export const loginSteps = {
 
 const Login = () => {
   const [activeLoginStep, setActiveLoginStep] = useState(loginSteps.signInForm);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
 
   const isMobile = useMediaQuery({ maxWidth: screenSizes.xxl });
 
+  const handleSignUp = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      <Redirect to="/home" />;
+    } catch (error: any) {
+      const errorMessage = error.message;
+      setError(errorMessage);
+    }
+  };
+
+  const handleSignIn = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      <Redirect to="/home" />;
+    } catch (error: any) {
+      const errorMessage = error.message;
+      setError(errorMessage);
+    }
+  };
+  console.log(error, 'error');
   const renderSignInForm = () => {
     return (
       <Form>
         <FormLabel>Sign In to Willeder</FormLabel>
         <FormGroup>
           <Title>Email Address</Title>
-          <InputField placeholder="Enter your email address" />
+          <InputField
+            placeholder="Enter your email address"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          />
         </FormGroup>
         <FormGroup>
           <Title>Password</Title>
-          <InputField placeholder="Enter your password" />
+          <InputField
+            placeholder="Enter your password"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            type="password"
+          />
         </FormGroup>
-        <LoginButton>Sign In</LoginButton>
+        <LoginButton onClick={(e) => handleSignIn(e)}>Sign In</LoginButton>
       </Form>
     );
   };
@@ -44,13 +81,22 @@ const Login = () => {
         <FormLabel>Welcome To Willeder</FormLabel>
         <FormGroup>
           <Title>Email Address</Title>
-          <InputField placeholder="Enter your email address" />
+          <InputField
+            placeholder="Enter your email address"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          />
         </FormGroup>
         <FormGroup>
           <Title>Password</Title>
-          <InputField placeholder="Enter your password" />
+          <InputField
+            placeholder="Enter your password"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            type="password"
+          />
         </FormGroup>
-        <LoginButton>Sign Up</LoginButton>
+        <LoginButton onClick={(e) => handleSignUp(e)}>Sign Up</LoginButton>
       </Form>
     );
   };

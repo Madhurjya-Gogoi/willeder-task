@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { View } from '../ uielements /view';
-import Button from '../ uielements /button';
+import { Button } from '../ uielements ';
 
 export const LoginContaner = styled(View)`
   display: grid;
