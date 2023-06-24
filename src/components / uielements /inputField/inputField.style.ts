@@ -89,6 +89,7 @@ const vxxlSizes: any = {
 type Props = {
   sizevalue: string;
   disabled?: boolean;
+  isError?: boolean;
 };
 export const StyledInputField = styled.input<Props>`
   outline: none;
@@ -147,4 +148,15 @@ export const StyledInputField = styled.input<Props>`
     color: #a9a9a9;
     opacity: 0.35;
   }
+
+  ${(props) =>
+    props.isError &&
+    css`
+      border: 0.5px solid #ff453a;
+      &:hover,
+      &:focus {
+        border-color: #ff453a;
+        box-shadow: rgba(0, 113, 227, 0.15) 0px 0px 30px;
+      }
+    `}
 `;

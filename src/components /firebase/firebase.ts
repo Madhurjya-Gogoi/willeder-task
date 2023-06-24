@@ -6,12 +6,12 @@ import { getAuth } from 'firebase/auth';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyC5zvL4FSmpWPKZnlkx2FEc7xf0gGGNSbk',
-  authDomain: 'willeder-project.firebaseapp.com',
-  projectId: 'willeder-project',
-  storageBucket: 'willeder-project.appspot.com',
-  messagingSenderId: '1020246266361',
-  appId: '1:1020246266361:web:db6faa111bee29f9962d28',
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBAE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGEING_SENDING_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase

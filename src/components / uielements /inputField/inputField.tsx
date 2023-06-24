@@ -4,14 +4,10 @@ import { StyledInputField } from './inputField.style';
 
 type InputFieldProps = {
   sizevalue?: any;
-  hasBtn?: boolean;
-  btnText?: string;
-  hasBtnIcon?: boolean;
-  btnIcon?: any;
-  showBtn?: boolean;
   isFilterMenu?: boolean;
   onBtnClick?: () => void;
   disabled?: boolean;
+  isError?: boolean;
 };
 type Props = InputFieldProps & React.InputHTMLAttributes<HTMLInputElement>;
 

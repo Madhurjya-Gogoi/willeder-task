@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { View } from '../ uielements /view';
 import { Button } from '../ uielements ';
+import { media } from '../helper';
 
 export const LoginContaner = styled(View)`
   display: grid;
@@ -10,6 +11,7 @@ export const LoginContaner = styled(View)`
   align-content: center;
   width: 100%;
   height: 100%;
+  position: relative;
 `;
 
 export const Form = styled.div`
@@ -39,6 +41,12 @@ export const FormGroup = styled.div`
 `;
 export const Title = styled.p`
   font-family: 'Gudea', sans-serif;
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  > span {
+    color: #ff453a;
+  }
 `;
 export const LoginButton = styled(Button)`
   position: absolute;
@@ -49,10 +57,38 @@ export const LoginButton = styled(Button)`
   font-family: 'Gudea', sans-serif;
 `;
 export const ContentLink = styled.p`
+  position: absolute;
   padding: 0px 20px;
   font-family: 'Gudea', sans-serif;
   > span {
     color: #0071e3;
     cursor: pointer;
   }
+`;
+export const RightContentLink = styled.p`
+  position: absolute;
+  left: 0;
+  margin-top: 50px;
+  padding: 0px 20px;
+  font-family: 'Gudea', sans-serif;
+  > span {
+    color: #0071e3;
+    cursor: pointer;
+  }
+  ${media.md`
+    position: absolute;
+    left: unset;
+    right: 0;
+    margin-top: 20px;
+  `};
+`;
+export const InfoBox = styled.div`
+  border: 1px solid #4fff4f;
+  background-color: #f7fdf9;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 14px;
+  color: #757575;
+  font-family: 'Gudea', sans-serif;
+  margin-top: 20px;
 `;

@@ -1,6 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const StyledButton = styled.button`
+type IStyledButton = {
+  disabled?: boolean;
+};
+export const StyledButton = styled.button<IStyledButton>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,4 +22,10 @@ export const StyledButton = styled.button`
     border-color: #0071e3;
     background: #0071e3;
   }
+  ${(props) =>
+    props.disabled &&
+    css`
+      background: #a5cdf5 !important;
+      border: none !important;
+    `}
 `;

@@ -32,7 +32,7 @@ const Navbar = () => {
         <NavbarLogo src={Logo} />
       </NavbarLeft>
       <NavbarRight>
-        <Title>Welcome, {extractNameFromEmail(user?.email)}</Title>
+        <Title>Welcome back, {extractNameFromEmail(user?.email)}!</Title>
         <SignUpButton onClick={handleSignOut}>Sign Up</SignUpButton>
       </NavbarRight>
     </NavbarWrapper>
